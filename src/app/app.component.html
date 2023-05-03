@@ -1,17 +1,27 @@
 <div class="top-menu">
-  <img
-    class="logo"
-    src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"
-  />
+  <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png" />
 </div>
 
-<button (click)="onCouresEdited()">Edit Courses</button>
-
-<div class="courses" #container>
+<div class="courses"  *ngIf="courses[0] as course">
   <course-card
-    *ngFor="let course of courses"
     (courseSelected)="onCourseSelected($event)"
     [course]="course"
-  ></course-card>
+  >
+    <div class="course-image">
+      <img width="300" alt="Angular Logo" [src]="course.iconUrl" />  
+      <h3>Total number of lessons: 10</h3>
+    </div>
 
+    <div class="course-description">{{ course.longDescription }}</div>
+
+    <h3>lorem ipsum dolor sit amet</h3>
+
+  </course-card>
+
+  <course-card
+    (courseSelected)="onCourseSelected($event)"
+    [course]="courses[1]"
+  >
+    <h3>Total number of lessons: 12</h3>
+  </course-card>
 </div>
